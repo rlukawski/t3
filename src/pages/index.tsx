@@ -1,7 +1,8 @@
 import { type NextPage } from "next";
-import { signIn, signOut, useSession } from "next-auth/react";
 import { api } from "~/utils/api";
-import { VStack, Container, Text, Heading, HStack, Grid, GridItem } from "@chakra-ui/react";
+import { Text, Heading, HStack, Grid, GridItem, Box } from "@chakra-ui/react";
+import { HiBars3 } from "react-icons/hi2";
+
 
 const Home: NextPage = () => {
   const hello = api.example.hello.useQuery({ text: "from tRPC" });
@@ -13,7 +14,11 @@ const Home: NextPage = () => {
       gridTemplateColumns={'8fr 4fr'}
       gap="2">
       <GridItem area='header' bgColor="lightgreen">
-        <Heading>This is Header</Heading>
+        <HStack justifyContent='space-between'>
+          <HiBars3 size="1.5em" />
+          <Heading>This is Header</Heading>
+          <Text>3</Text>
+        </HStack>
       </GridItem>
       <GridItem area='body' bgColor="lightblue">
         <Text>Hello from the world of Next.js</Text>
@@ -23,6 +28,6 @@ const Home: NextPage = () => {
       </GridItem>
     </Grid>
   );
-};
+}
 
 export default Home;
