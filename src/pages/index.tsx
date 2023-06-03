@@ -1,9 +1,10 @@
 import { type NextPage } from "next";
 import { api } from "~/utils/api";
-import { Text, Heading, HStack, Grid, GridItem, Box, Button } from "@chakra-ui/react";
+import { Text, Heading, HStack, Grid, GridItem, Box, Button, VStack, Input, FormControl, FormLabel, Select } from "@chakra-ui/react";
 import { HiBars3 } from "react-icons/hi2";
 import { BsBell } from "react-icons/bs";
 import { AiOutlineEdit } from "react-icons/ai";
+import { CiSearch } from "react-icons/ci";
 
 const Home: NextPage = () => {
   const hello = api.example.hello.useQuery({ text: "from tRPC" });
@@ -27,6 +28,26 @@ const Home: NextPage = () => {
         </HStack>
       </GridItem>
       <GridItem area='body' as='main' borderRightWidth={1}>
+        <VStack p='4' rowGap='4' >
+          <HStack w='full'>
+            <FormControl flexBasis='50%' display='flex' alignItems='center'><FormLabel><CiSearch size='1.5em' /></FormLabel><Input placeholder="Search" borderRadius={'full'} /></FormControl>
+            <HStack flexBasis='50%' columnGap='2' justifyContent='center'>
+              <Text>Menu:</Text>
+              <Button borderRadius='full'>Design0</Button>
+              <Button borderRadius='full'>Design1</Button>
+              <Button borderRadius='full'>Design2</Button>
+              <Button borderRadius='full'>Design3</Button>
+            </HStack>
+          </HStack>
+          <HStack w='full' justifyContent='space-between'>
+            <Text>Articles</Text>
+            <Box>
+              <Select placeholder="Select option" defaultValue={'option1'} borderRadius='full'>
+                <option value="option1">Option 1</option>
+              </Select>
+            </Box>
+          </HStack>
+        </VStack>
         <Text>Hello from the world of Next.js</Text>
       </GridItem>
       <GridItem area='sidebar' as='aside'>
