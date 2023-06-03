@@ -11,8 +11,9 @@ const Home: NextPage = () => {
   return (
     <Grid templateAreas={`"header header"
                            "body sidebar"`}
-      gridTemplateRows={'1fr 1fr'}
+      gridTemplateRows={'80px 1fr'}
       gridTemplateColumns={'8fr 4fr'}
+      h='100vh'
       gap="1">
       <GridItem area='header' borderBottomWidth={1}>
         <HStack justifyContent='space-between' p='3'>
@@ -25,10 +26,10 @@ const Home: NextPage = () => {
           </HStack>
         </HStack>
       </GridItem>
-      <GridItem area='body'>
+      <GridItem area='body' as='main' borderRightWidth={1}>
         <Text>Hello from the world of Next.js</Text>
       </GridItem>
-      <GridItem area='sidebar'>
+      <GridItem area='sidebar' as='aside'>
         <Text>Sidebar</Text>
       </GridItem>
     </Grid>
