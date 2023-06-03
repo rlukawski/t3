@@ -4,6 +4,7 @@ import { type AppType } from "next/app";
 import { api } from "~/utils/api";
 import "~/styles/globals.css";
 import { ChakraProvider } from "@chakra-ui/react";
+import "@fontsource/assistant";
 
 const MyApp: AppType<{ session: Session | null }> = ({
   Component,

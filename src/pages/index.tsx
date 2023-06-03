@@ -13,22 +13,22 @@ const Home: NextPage = () => {
                            "body sidebar"`}
       gridTemplateRows={'1fr 1fr'}
       gridTemplateColumns={'8fr 4fr'}
-      gap="2">
-      <GridItem area='header' bgColor="lightgreen">
+      gap="1">
+      <GridItem area='header' borderBottomWidth={1}>
         <HStack justifyContent='space-between' p='3'>
           <HiBars3 size="1.5em" />
-          <Heading>This is Header</Heading>
+          <Heading fontFamily='assistant' fontWeight={100}>This is Header</Heading>
           <HStack columnGap="4">
             <BsBell size="1.5em" />
             <Box bgColor="gray.600" w="5" h="5" borderRadius="full"></Box>
-            <Button variant="outline" colorScheme="dark" columnGap="2"><Text>Write</Text><AiOutlineEdit /></Button>
+            <Button variant="outline" colorScheme="gray" columnGap="2"><Text>Write</Text><AiOutlineEdit /></Button>
           </HStack>
         </HStack>
       </GridItem>
-      <GridItem area='body' bgColor="lightblue">
+      <GridItem area='body'>
         <Text>Hello from the world of Next.js</Text>
       </GridItem>
-      <GridItem area='sidebar' bgColor="yellow">
+      <GridItem area='sidebar'>
         <Text>Sidebar</Text>
       </GridItem>
     </Grid>
