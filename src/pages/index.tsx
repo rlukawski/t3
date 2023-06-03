@@ -8,7 +8,7 @@ const Home: NextPage = () => {
 
   return (
     <Container>
-      <VStack w="full"><Text color="black">Hello from the world of Next.js</Text></VStack>
+      <VStack w="full"><Text>Hello from the world of Next.js</Text></VStack>
     </Container>
   );
 };
