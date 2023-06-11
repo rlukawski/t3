@@ -51,11 +51,23 @@ const Home: NextPage = () => {
           </HStack>
         </VStack>
         <VStack>
-          {Array(5).fill('').map((_,i) => <ArticleItem key={i}/>)}
+          {Array(5).fill('').map((_, i) => <ArticleItem key={i} />)}
         </VStack>
       </GridItem>
       <GridItem area='sidebar' as='aside'>
-        <Text>Sidebar</Text>
+        <VStack p='6'>
+          <Box w='full' h='200px' borderRadius='xl' bgColor='gray.200' bgGradient='linear(to-br, gray.300, gray.200, gray.300)' p='6'>
+            <HStack w='full' h='full' alignItems='center'>
+              <VStack alignItems='flex-start' flexGrow='1'>
+                <Heading size='md' noOfLines={1}>Lorem ipsum dolor sit amet consectetur adipisicing elit. </Heading>
+                <Text noOfLines={2}>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatem pariatur, qui aperiam modi necessitatibus quos, asperiores error impedit corporis numquam cumque dolorum odio obcaecati consectetur, blanditiis ad sed minima fugiat?
+                </Text>
+                <Button>Button</Button>
+              </VStack>
+              <Image h='full' alt='alt' src='https://placehold.co/400'></Image>
+            </HStack>
+          </Box>
+        </VStack>
       </GridItem>
     </Grid>
   );
