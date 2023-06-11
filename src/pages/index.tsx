@@ -51,11 +51,7 @@ const Home: NextPage = () => {
           </HStack>
         </VStack>
         <VStack>
-          <ArticleItem />
-          <Spacer />
-          <ArticleItem />
-          <Spacer />
-          <ArticleItem />
+          {Array(5).fill('').map((_,i) => <ArticleItem key={i}/>)}
         </VStack>
       </GridItem>
       <GridItem area='sidebar' as='aside'>
