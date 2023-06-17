@@ -1,20 +1,34 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
+import { useState } from "react";
 import { type NextPage } from "next";
+
 import { api } from "~/utils/api";
-import { Text, Heading, HStack, Grid, GridItem, Box, Button, VStack, Input, FormControl, FormLabel, Select, Image, Spacer } from "@chakra-ui/react";
+import { Text, Heading, HStack, Grid, GridItem, Box, Button, VStack, Input, FormControl, FormLabel, Select, Image } from "@chakra-ui/react";
+import {
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton
+} from '@chakra-ui/react'
 import { HiBars3 } from "react-icons/hi2";
 import { BsBell } from "react-icons/bs";
 import { AiOutlineEdit } from "react-icons/ai";
 import { CiSearch } from "react-icons/ci";
 
 import { ArticleItem } from "~/components/ArticleItem";
-import { signIn, useSession } from "next-auth/react";
+import { signIn, signOut, useSession } from "next-auth/react";
 
 const Home: NextPage = () => {
+  const [isOpen, setIsOpen] = useState(false);
   const hello = api.example.hello.useQuery({ text: "from tRPC" });
   const { data: sessionData, status } = useSession();
 
   console.log({ sessionData, status })
+
+  const onClose = () => setIsOpen(false);;
   return (
     <Grid templateAreas={`"header header"
                            "body sidebar"`}
@@ -30,7 +44,26 @@ const Home: NextPage = () => {
             <HStack columnGap="4">
               <BsBell size="1.5em" />
               <Box bgColor="gray.600" w="5" h="5" borderRadius="full"></Box>
-              <Button variant="outline" colorScheme="gray" columnGap="2"><Text>Write</Text><AiOutlineEdit /></Button>
+              <Button variant="outline" colorScheme="gray" columnGap="2" onClick={() => setIsOpen(true)}><Text>Write</Text><AiOutlineEdit /></Button>
+              <Button onClick={() => signOut()}>SignOut</Button>
+              <Modal isOpen={isOpen} onClose={onClose}>
+                <ModalOverlay />
+                <ModalContent>
+                  <ModalHeader>Modal Title</ModalHeader>
+                  <ModalCloseButton />
+                  <ModalBody>
+                    *Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et dolorum harum nesciunt, expedita quasi architecto quia excepturi fuga, quos asperiores, saepe voluptas reiciendis ipsum provident voluptatem laborum! Blanditiis, non nostrum?
+                  
+                  </ModalBody>
+
+                  <ModalFooter>
+                    <Button colorScheme='blue' mr={3} onClick={onClose}>
+                      Close
+                    </Button>
+                    <Button variant='ghost'>Secondary Action</Button>
+                  </ModalFooter>
+                </ModalContent>
+              </Modal>
             </HStack> : <Button variant="outline" onClick={() => signIn()} colorScheme="gray" columnGap="2">Sign in</Button>}
         </HStack>
       </GridItem >
