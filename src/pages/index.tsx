@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-misused-promises */
 import { type NextPage } from "next";
 import { api } from "~/utils/api";
 import { Text, Heading, HStack, Grid, GridItem, Box, Button, VStack, Input, FormControl, FormLabel, Select, Image, Spacer } from "@chakra-ui/react";
@@ -7,10 +8,13 @@ import { AiOutlineEdit } from "react-icons/ai";
 import { CiSearch } from "react-icons/ci";
 
 import { ArticleItem } from "~/components/ArticleItem";
+import { signIn, useSession } from "next-auth/react";
 
 const Home: NextPage = () => {
   const hello = api.example.hello.useQuery({ text: "from tRPC" });
+  const { data: sessionData, status } = useSession();
 
+  console.log({ sessionData, status })
   return (
     <Grid templateAreas={`"header header"
                            "body sidebar"`}
@@ -22,13 +26,14 @@ const Home: NextPage = () => {
         <HStack justifyContent='space-between' p='3'>
           <HiBars3 size="1.5em" />
           <Heading fontFamily='assistant' fontWeight={100}>This is Header</Heading>
-          <HStack columnGap="4">
-            <BsBell size="1.5em" />
-            <Box bgColor="gray.600" w="5" h="5" borderRadius="full"></Box>
-            <Button variant="outline" colorScheme="gray" columnGap="2"><Text>Write</Text><AiOutlineEdit /></Button>
-          </HStack>
+          {status === 'authenticated' ?
+            <HStack columnGap="4">
+              <BsBell size="1.5em" />
+              <Box bgColor="gray.600" w="5" h="5" borderRadius="full"></Box>
+              <Button variant="outline" colorScheme="gray" columnGap="2"><Text>Write</Text><AiOutlineEdit /></Button>
+            </HStack> : <Button variant="outline" onClick={() => signIn()} colorScheme="gray" columnGap="2">Sign in</Button>}
         </HStack>
-      </GridItem>
+      </GridItem >
       <GridItem area='body' as='main' borderRightWidth={1} alignItems='center' display='flex' flexDirection={'column'}>
         <VStack p='4' rowGap='4' w='80%'>
           <HStack w='full'>
@@ -69,7 +74,7 @@ const Home: NextPage = () => {
           </Box>
         </VStack>
       </GridItem>
-    </Grid>
+    </Grid >
   );
 }
 
